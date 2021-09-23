@@ -2,15 +2,17 @@ import {Navbar, NavbarBrand} from 'reactstrap';
 import Main from './components/MainComponent';
 import './App.css';
 import React, {Component, useState} from 'react';
+import {BrowserRouter} from 'react-router-dom';
 
-class App extends Component { //lower letters tags are DOM tags  
-  render(){
+function App(){ //lower letters tags are DOM tags  
     return (
-      <div> 
-        <Main />
-      </div>
+      <BrowserRouter>
+        <div> 
+          <Main />
+        </div>
+      </BrowserRouter>
+
     );
-  }
 }
 
 export default App;

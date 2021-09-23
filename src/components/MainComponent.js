@@ -1,8 +1,12 @@
-import {Navbar, NavbarBrand} from 'reactstrap';
 import Menu from './MenuComponent';
+import Home from './HomeComponent.js';
 import {DISHES} from '../shared/dishes';
 import React, {Component, useState} from 'react';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import DishDetail from "./DishdetailComponenet";
+import { Switch, Route, Redirect } from 'react-router';
+
 
 
 class Main extends Component { //lower letters tags are DOM tags
@@ -14,22 +18,23 @@ class Main extends Component { //lower letters tags are DOM tags
       selectedDish: null
     };
   }
-  
-  onDishSelect(dishId){
-    this.setState({selectedDish: dishId}); //selected dish set to dish on click
-}
+
   render(){
+
+    const HomePage = () =>{
+      return(
+        <Home />
+      )
+    }
     return (
       <div> 
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">Focus.io</NavbarBrand>
-          </div>
-        </Navbar>
-        <Menu dishes = {this.state.dishes}
-            onClick= {(dishId) => this.onDishSelect(dishId)} />
-        <DishDetail 
-            dish={this.state.dishes.filter((dish)=> dish.id == this.state.selectedDish)[0]}/>
+        <Header />
+        <Switch>
+          <Route path="/home" component={HomePage} />
+          <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes}/>} />
+          <Redirect to="/home" />
+        </Switch>
+        <Footer />
       </div>
     );
   }
