@@ -3,14 +3,21 @@ import Main from './components/MainComponent';
 import './App.css';
 import React, {Component, useState} from 'react';
 import {BrowserRouter} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+
+const store = ConfigureStore();
 
 function App(){ //lower letters tags are DOM tags  
+
     return (
+      <Provider store={store}>
       <BrowserRouter>
         <div> 
           <Main />
         </div>
       </BrowserRouter>
+      </Provider>
 
     );
 }
